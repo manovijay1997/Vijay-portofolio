@@ -1,38 +1,36 @@
 /*global $, console, ProgressBar*/
 
 $(function() {
+    'use strict';
 
-    "use strict";
-
-    var scrollBox = $(".full-page > .overlay-container"),
+    var scrollBox = $('.full-page > .overlay-container'),
         niceScrollOptions = {
             // cursorwidth: "5px",
-            cursorcolor: "#1894ff",
-            cursorwidth: "7px",
+            cursorcolor: '#1894ff',
+            cursorwidth: '7px',
             cursorborder: 0,
-            cursorborderradius: "0",
-            cursoropacitymin: "1"
+            cursorborderradius: '0',
+            cursoropacitymin: '1'
         },
-        demo2Check = $(".sakura-demo2").length,
+        demo2Check = $('.sakura-demo2').length,
         soft_progress_check = false,
         technical_progress_check = false,
         factsCheck = false,
         testimonials_slider = $('.testimonials-slider'),
         resumeSection = $('.resume'),
-        scrollToTop = $(".scrollToTop"),
-        navBar = $(".appsLand-navbar"),
+        scrollToTop = $('.scrollToTop'),
+        navBar = $('.appsLand-navbar'),
         softSkills = $('.soft-skills'),
-        technicalSkills = $(".technical-skills"),
-
+        technicalSkills = $('.technical-skills'),
         allProgress = [];
 
     if (demo2Check) {
-        scrollBox = $(".sakura-demo2");
+        scrollBox = $('.sakura-demo2');
     }
 
     /** Smooth Scrolling
      **====================== **/
-    $(".kayo-links a,.scrollLink").on('click', function(e) {
+    $('.kayo-links a,.scrollLink').on('click', function(e) {
         e.preventDefault();
         var hash = this.hash,
             scrollTopOffset = $(hash).offset().top;
@@ -48,15 +46,17 @@ $(function() {
      **====================== **/
     scrollToTop.on('click', function(e) {
         $('html, body').animate({
-            scrollTop: 0
-        }, 500);
+                scrollTop: 0
+            },
+            500
+        );
     });
-    $(document).on("scroll", function() {
+    $(document).on('scroll', function() {
         // show scroll to top btn
         if ($(window).scrollTop() > 1000) {
-            scrollToTop.addClass("active");
+            scrollToTop.addClass('active');
         } else {
-            scrollToTop.removeClass("active");
+            scrollToTop.removeClass('active');
         }
     });
     /** => Scroll To Top */
@@ -78,10 +78,20 @@ $(function() {
 
     /**  Start Typed
      **====================== **/
-    $(".kayo-work").typed({
-        strings: ["Web Developer.", "Web Designer."],
-        cursorChar: "",
-        typeSpeed: 150,
+    $('.kayo-work').typed({
+        strings: ['Web Developer.', 'Web Designer.', 'Software developer.'],
+        cursorChar: '',
+        typeSpeed: 100,
+        loop: true,
+        backSpeed: 50
+    });
+    /** => End Typed */
+    /**  Start Typed
+     **====================== **/
+    $('.kayo-work1').typed({
+        strings: ['Web Developer.', 'Web Designer.', 'Software developer.'],
+        cursorChar: '',
+        typeSpeed: 100,
         loop: true,
         backSpeed: 50
     });
@@ -91,13 +101,13 @@ $(function() {
      **=========================== **/
     function activeNavBar() {
         if ($(window).scrollTop() > 0) {
-            navBar.addClass("active-navbar");
+            navBar.addClass('active-navbar');
         } else {
-            navBar.removeClass("active-navbar");
+            navBar.removeClass('active-navbar');
         }
     }
     activeNavBar();
-    $(document).on("scroll", function() {
+    $(document).on('scroll', function() {
         activeNavBar();
     });
     /** => End navBar animation on scroll */
@@ -110,10 +120,10 @@ $(function() {
     }
 
     function readyProgress($pro) {
-        var element = "#" + $pro.attr('id'),
+        var element = '#' + $pro.attr('id'),
             circle = new ProgressBar.Circle(element, {
                 easing: 'easeInOut',
-                color: $pro.data("color"),
+                color: $pro.data('color'),
                 duration: 3000,
                 strokeWidth: 5,
                 trailWidth: 5,
@@ -143,8 +153,8 @@ $(function() {
 
     $('.progressName').each(function() {
         allProgress.push({
-            'circle': readyProgress($(this)),
-            'proElement': $(this)
+            circle: readyProgress($(this)),
+            proElement: $(this)
         });
     });
 
@@ -160,7 +170,7 @@ $(function() {
     function startProgress() {
         var i;
         for (i = 0; i < allProgress.length; i += 1) {
-            allProgress[i].circle.animate(allProgress[i].proElement.data("value"), {
+            allProgress[i].circle.animate(allProgress[i].proElement.data('value'), {
                 duration: 1500,
                 step: getStep
             });
@@ -180,7 +190,7 @@ $(function() {
     $(document, window).on('scroll', function() {
         if (demo2Check || window.matchMedia('(max-width: 767px)').matches) {
             var bodyScrollTop = $(document, window).scrollTop(),
-                softSkillsoffsetTop = softSkills.offset().top - ($(window).height() / 2);
+                softSkillsoffsetTop = softSkills.offset().top - $(window).height() / 2;
             if (!soft_progress_check && bodyScrollTop >= softSkillsoffsetTop) {
                 startProgress();
                 soft_progress_check = true;
@@ -195,9 +205,9 @@ $(function() {
         $('.progress-bar-container').each(function() {
             var thisElement = $(this),
                 timer = thisElement.find('.timer'),
-                dataTo = timer.data("to");
-            thisElement.find('.progress-bar').css({ "width": dataTo + "%" });
-            timer.css({ "left": "calc(" + dataTo + "% - 19px)" });
+                dataTo = timer.data('to');
+            thisElement.find('.progress-bar').css({ width: dataTo + '%' });
+            timer.css({ left: 'calc(' + dataTo + '% - 19px)' });
         });
     }
 
@@ -213,7 +223,7 @@ $(function() {
     $(document, window).on('scroll', function() {
         if (demo2Check || window.matchMedia('(max-width: 767px)').matches) {
             var bodyScrollTop = $(document, window).scrollTop(),
-                techoffsetTop = technicalSkills.offset().top - ($(window).height() / 2);
+                techoffsetTop = technicalSkills.offset().top - $(window).height() / 2;
             if (!technical_progress_check && bodyScrollTop >= techoffsetTop) {
                 skillsProgress();
                 technical_progress_check = true;
@@ -235,7 +245,7 @@ $(function() {
     $(document, window).on('scroll', function() {
         if (demo2Check || window.matchMedia('(max-width: 767px)').matches) {
             var bodyScrollTop = $(document, window).scrollTop(),
-                listoffsetTop = $('.kayo-facts-about-me .kayo-info-list').offset().top - ($(window).height() / 2);
+                listoffsetTop = $('.kayo-facts-about-me .kayo-info-list').offset().top - $(window).height() / 2;
             if (!factsCheck && bodyScrollTop >= listoffsetTop) {
                 $('.facts-numbers').countTo();
                 factsCheck = true;
@@ -249,21 +259,24 @@ $(function() {
     /**  Start Loading
      **====================== **/
     $(window).on('load', function() {
-        $(".loading").animate({
-            "top": "-100%"
-        }, 700, function() {
-            $(this).remove();
-        });
+        $('.loading').animate({
+                top: '-100%'
+            },
+            700,
+            function() {
+                $(this).remove();
+            }
+        );
     });
     /** => End Loading */
 
     /**  Mobile Menu
      **====================== **/
-    $(".menu-toggle").on("click", function() {
-        $("body").toggleClass('mobile-menu-active');
+    $('.menu-toggle').on('click', function() {
+        $('body').toggleClass('mobile-menu-active');
     });
-    $(".sakura-demo2-menu-toggle").on("click", function() {
-        $(".sakura-navbar").toggleClass('sakura-demo2-mobile-menu-active');
+    $('.sakura-demo2-menu-toggle').on('click', function() {
+        $('.sakura-navbar').toggleClass('sakura-demo2-mobile-menu-active');
     });
     /** => End Mobile Menu */
 
@@ -273,17 +286,17 @@ $(function() {
         var totalSlides = slider.$slides.length,
             nextSlideImg = $(slider.$slides[1]).find('img').attr('src'),
             prevSlideImg = $(slider.$slides[totalSlides - 1]).find('img').attr('src');
-        $("#testimonial-nextArrow .testimonials-client-page").css('background-image', 'url(' + nextSlideImg + ')');
-        $("#testimonial-prevArrow .testimonials-client-page").css('background-image', 'url(' + prevSlideImg + ')');
+        $('#testimonial-nextArrow .testimonials-client-page').css('background-image', 'url(' + nextSlideImg + ')');
+        $('#testimonial-prevArrow .testimonials-client-page').css('background-image', 'url(' + prevSlideImg + ')');
     });
     testimonials_slider.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
         var totalSlides = slick.$slides.length,
-            nextSlideNum = (nextSlide + 1 === totalSlides) ? 0 : nextSlide + 1,
-            prevSlideNum = (nextSlide === 0) ? totalSlides - 1 : nextSlide - 1,
+            nextSlideNum = nextSlide + 1 === totalSlides ? 0 : nextSlide + 1,
+            prevSlideNum = nextSlide === 0 ? totalSlides - 1 : nextSlide - 1,
             nextSlideImg = $(slick.$slides[nextSlideNum]).find('img').attr('src'),
             prevSlideImg = $(slick.$slides[prevSlideNum]).find('img').attr('src');
-        $("#testimonial-nextArrow .testimonials-client-page").css('background-image', 'url(' + nextSlideImg + ')');
-        $("#testimonial-prevArrow .testimonials-client-page").css('background-image', 'url(' + prevSlideImg + ')');
+        $('#testimonial-nextArrow .testimonials-client-page').css('background-image', 'url(' + nextSlideImg + ')');
+        $('#testimonial-prevArrow .testimonials-client-page').css('background-image', 'url(' + prevSlideImg + ')');
     });
     testimonials_slider.slick({
         centerMode: true,
@@ -292,11 +305,17 @@ $(function() {
         arrows: true,
         nextArrow: $('#testimonial-nextArrow'),
         prevArrow: $('#testimonial-prevArrow'),
-        appendDots: "#testimonial-paging",
+        appendDots: '#testimonial-paging',
         customPaging: function(slider, i) {
             var thumb = $(slider.$slides[i]).find('img').attr('src'),
                 name = $(slider.$slides[i]).find('.testi-user-info h3').text();
-            return '<i class="dot"><img src="' + thumb + '" class="img-responsive" data-toggle="tooltip" data-placement="top" title="' + name + '"></i>';
+            return (
+                '<i class="dot"><img src="' +
+                thumb +
+                '" class="img-responsive" data-toggle="tooltip" data-placement="top" title="' +
+                name +
+                '"></i>'
+            );
         },
         dots: true,
         responsive: [{
@@ -440,10 +459,13 @@ $(function() {
             if (hash) {
                 scrollTopOffset = $(hash).offset().top;
                 $('html, body').animate({
-                    scrollTop: scrollTopOffset
-                }, 0, function() {
-                    window.location.hash = hash;
-                });
+                        scrollTop: scrollTopOffset
+                    },
+                    0,
+                    function() {
+                        window.location.hash = hash;
+                    }
+                );
             }
         }
         // fix position for the niceScroll
@@ -453,7 +475,6 @@ $(function() {
     /** Change The URL Hash Value On scroll
      **================================= **/
     $(window).on('activate.bs.scrollspy', function(e) {
-        history.replaceState({}, "", $("a[href^='#']", e.target).attr("href"));
+        history.replaceState({}, '', $("a[href^='#']", e.target).attr('href'));
     });
-
 });
