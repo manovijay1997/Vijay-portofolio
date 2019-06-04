@@ -1,6 +1,6 @@
 /*global $, console, ProgressBar*/
 
-$(function() {
+$(function () {
     'use strict';
 
     var scrollBox = $('.full-page > .overlay-container'),
@@ -30,13 +30,13 @@ $(function() {
 
     /** Smooth Scrolling
      **====================== **/
-    $('.kayo-links a,.scrollLink').on('click', function(e) {
+    $('.kayo-links a,.scrollLink').on('click', function (e) {
         e.preventDefault();
         var hash = this.hash,
             scrollTopOffset = $(hash).offset().top;
         $('html, body').removeClass('mobile-menu-active').animate({
             scrollTop: scrollTopOffset
-        }, 500, function() {
+        }, 500, function () {
             window.location.hash = hash;
         });
     });
@@ -44,14 +44,14 @@ $(function() {
 
     /** Scroll To Top
      **====================== **/
-    scrollToTop.on('click', function(e) {
+    scrollToTop.on('click', function (e) {
         $('html, body').animate({
-                scrollTop: 0
-            },
+            scrollTop: 0
+        },
             500
         );
     });
-    $(document).on('scroll', function() {
+    $(document).on('scroll', function () {
         // show scroll to top btn
         if ($(window).scrollTop() > 1000) {
             scrollToTop.addClass('active');
@@ -69,7 +69,7 @@ $(function() {
     function fixNiceScroll() {
         scrollBox.getNiceScroll().resize();
     }
-    scrollBox.on('resize', function() {
+    scrollBox.on('resize', function () {
         // fix position for the niceScroll
         fixNiceScroll();
     });
@@ -107,7 +107,7 @@ $(function() {
         }
     }
     activeNavBar();
-    $(document).on('scroll', function() {
+    $(document).on('scroll', function () {
         activeNavBar();
     });
     /** => End navBar animation on scroll */
@@ -151,7 +151,7 @@ $(function() {
         return circle;
     }
 
-    $('.progressName').each(function() {
+    $('.progressName').each(function () {
         allProgress.push({
             circle: readyProgress($(this)),
             proElement: $(this)
@@ -179,7 +179,7 @@ $(function() {
 
     /** START Soft Skills Progress */
 
-    resumeSection.on('scroll', function() {
+    resumeSection.on('scroll', function () {
         var offsetTop = getOffsetTop($(this), softSkills);
         if (!soft_progress_check && offsetTop < $(this).parent().height()) {
             startProgress();
@@ -187,7 +187,7 @@ $(function() {
         }
     });
     // on mobile size
-    $(document, window).on('scroll', function() {
+    $(document, window).on('scroll', function () {
         if (demo2Check || window.matchMedia('(max-width: 767px)').matches) {
             var bodyScrollTop = $(document, window).scrollTop(),
                 softSkillsoffsetTop = softSkills.offset().top - $(window).height() / 2;
@@ -202,7 +202,7 @@ $(function() {
     /** START Technical Skills Progress */
     function skillsProgress() {
         $('.timer').countTo();
-        $('.progress-bar-container').each(function() {
+        $('.progress-bar-container').each(function () {
             var thisElement = $(this),
                 timer = thisElement.find('.timer'),
                 dataTo = timer.data('to');
@@ -211,7 +211,7 @@ $(function() {
         });
     }
 
-    resumeSection.on('scroll', function() {
+    resumeSection.on('scroll', function () {
         var offsetTop = getOffsetTop($(this), technicalSkills);
         if (!technical_progress_check && offsetTop < $(this).parent().height()) {
             skillsProgress();
@@ -220,7 +220,7 @@ $(function() {
     });
 
     // on mobile size
-    $(document, window).on('scroll', function() {
+    $(document, window).on('scroll', function () {
         if (demo2Check || window.matchMedia('(max-width: 767px)').matches) {
             var bodyScrollTop = $(document, window).scrollTop(),
                 techoffsetTop = technicalSkills.offset().top - $(window).height() / 2;
@@ -234,7 +234,7 @@ $(function() {
 
     /** START facts about me counter */
 
-    $('.aboutMe').on('scroll', function() {
+    $('.aboutMe').on('scroll', function () {
         var offsetTop = getOffsetTop($(this), $('.kayo-facts-about-me .kayo-info-list'));
         if (!factsCheck && offsetTop < $(this).parent().height()) {
             $('.facts-numbers').countTo();
@@ -242,7 +242,7 @@ $(function() {
         }
     });
     // on mobile size
-    $(document, window).on('scroll', function() {
+    $(document, window).on('scroll', function () {
         if (demo2Check || window.matchMedia('(max-width: 767px)').matches) {
             var bodyScrollTop = $(document, window).scrollTop(),
                 listoffsetTop = $('.kayo-facts-about-me .kayo-info-list').offset().top - $(window).height() / 2;
@@ -258,12 +258,12 @@ $(function() {
 
     /**  Start Loading
      **====================== **/
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         $('.loading').animate({
-                top: '-100%'
-            },
+            top: '-100%'
+        },
             700,
-            function() {
+            function () {
                 $(this).remove();
             }
         );
@@ -272,24 +272,24 @@ $(function() {
 
     /**  Mobile Menu
      **====================== **/
-    $('.menu-toggle').on('click', function() {
+    $('.menu-toggle').on('click', function () {
         $('body').toggleClass('mobile-menu-active');
     });
-    $('.sakura-demo2-menu-toggle').on('click', function() {
+    $('.sakura-demo2-menu-toggle').on('click', function () {
         $('.sakura-navbar').toggleClass('sakura-demo2-mobile-menu-active');
     });
     /** => End Mobile Menu */
 
     /**  Testimonials Slider
      **====================== **/
-    testimonials_slider.on('init', function(slick, slider) {
+    testimonials_slider.on('init', function (slick, slider) {
         var totalSlides = slider.$slides.length,
             nextSlideImg = $(slider.$slides[1]).find('img').attr('src'),
             prevSlideImg = $(slider.$slides[totalSlides - 1]).find('img').attr('src');
         $('#testimonial-nextArrow .testimonials-client-page').css('background-image', 'url(' + nextSlideImg + ')');
         $('#testimonial-prevArrow .testimonials-client-page').css('background-image', 'url(' + prevSlideImg + ')');
     });
-    testimonials_slider.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+    testimonials_slider.on('beforeChange', function (event, slick, currentSlide, nextSlide) {
         var totalSlides = slick.$slides.length,
             nextSlideNum = nextSlide + 1 === totalSlides ? 0 : nextSlide + 1,
             prevSlideNum = nextSlide === 0 ? totalSlides - 1 : nextSlide - 1,
@@ -306,7 +306,7 @@ $(function() {
         nextArrow: $('#testimonial-nextArrow'),
         prevArrow: $('#testimonial-prevArrow'),
         appendDots: '#testimonial-paging',
-        customPaging: function(slider, i) {
+        customPaging: function (slider, i) {
             var thumb = $(slider.$slides[i]).find('img').attr('src'),
                 name = $(slider.$slides[i]).find('.testi-user-info h3').text();
             return (
@@ -319,30 +319,30 @@ $(function() {
         },
         dots: true,
         responsive: [{
-                breakpoint: 1200,
-                settings: {
-                    centerMode: true,
-                    centerPadding: '20px',
-                    slidesToShow: 1
-                }
-            },
-            {
-                breakpoint: 993,
-                settings: {
-                    centerMode: true,
-                    centerPadding: '20px',
-                    slidesToShow: 1
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    centerMode: true,
-                    centerPadding: '10px',
-                    slidesToShow: 1,
-                    dots: false
-                }
+            breakpoint: 1200,
+            settings: {
+                centerMode: true,
+                centerPadding: '20px',
+                slidesToShow: 1
             }
+        },
+        {
+            breakpoint: 993,
+            settings: {
+                centerMode: true,
+                centerPadding: '20px',
+                slidesToShow: 1
+            }
+        },
+        {
+            breakpoint: 768,
+            settings: {
+                centerMode: true,
+                centerPadding: '10px',
+                slidesToShow: 1,
+                dots: false
+            }
+        }
         ]
     });
     /** => End Testimonials Slider */
@@ -351,29 +351,29 @@ $(function() {
         arrows: false,
         dots: false,
         responsive: [{
-                breakpoint: 1200,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 993,
-                settings: {
-                    slidesToShow: 4
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 350,
-                settings: {
-                    slidesToShow: 1
-                }
+            breakpoint: 1200,
+            settings: {
+                slidesToShow: 3
             }
+        },
+        {
+            breakpoint: 993,
+            settings: {
+                slidesToShow: 4
+            }
+        },
+        {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 2
+            }
+        },
+        {
+            breakpoint: 350,
+            settings: {
+                slidesToShow: 1
+            }
+        }
         ]
     });
     $('.sakura-demo2-clients-slider').slick({
@@ -381,47 +381,47 @@ $(function() {
         arrows: false,
         dots: false,
         responsive: [{
-                breakpoint: 1200,
-                settings: {
-                    slidesToShow: 5
-                }
-            },
-            {
-                breakpoint: 993,
-                settings: {
-                    slidesToShow: 4
-                }
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 3
-                }
-            },
-            {
-                breakpoint: 520,
-                settings: {
-                    slidesToShow: 2
-                }
-            },
-            {
-                breakpoint: 350,
-                settings: {
-                    slidesToShow: 1
-                }
+            breakpoint: 1200,
+            settings: {
+                slidesToShow: 5
             }
+        },
+        {
+            breakpoint: 993,
+            settings: {
+                slidesToShow: 4
+            }
+        },
+        {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 3
+            }
+        },
+        {
+            breakpoint: 520,
+            settings: {
+                slidesToShow: 2
+            }
+        },
+        {
+            breakpoint: 350,
+            settings: {
+                slidesToShow: 1
+            }
+        }
         ]
     });
     /** Bootstrap Tooltip
      **====================== **/
-    $(function() {
+    $(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
     /** => End Bootstrap Tooltip */
 
     /** Portfolio Filter
      **====================== **/
-    $(window).on('load', function() {
+    $(window).on('load', function () {
         $('.grid').isotope({
             // options
             itemSelector: '.grid-item',
@@ -437,7 +437,7 @@ $(function() {
             }
         });
     });
-    $('.portfolio-sorting li').on('click', function(e) {
+    $('.portfolio-sorting li').on('click', function (e) {
         e.preventDefault();
         $(this).closest('li').addClass('active').siblings().removeClass('active');
         var seclector = $(this).attr('data-filter');
@@ -452,17 +452,17 @@ $(function() {
 
     /** Fix The Box position after resize
      **====================== **/
-    $(window).on('resize', function() {
+    $(window).on('resize', function () {
         if (!demo2Check && !window.matchMedia('(max-width: 767px)').matches) {
             var hash = window.location.hash,
                 scrollTopOffset;
             if (hash) {
                 scrollTopOffset = $(hash).offset().top;
                 $('html, body').animate({
-                        scrollTop: scrollTopOffset
-                    },
+                    scrollTop: scrollTopOffset
+                },
                     0,
-                    function() {
+                    function () {
                         window.location.hash = hash;
                     }
                 );
@@ -474,7 +474,7 @@ $(function() {
 
     /** Change The URL Hash Value On scroll
      **================================= **/
-    $(window).on('activate.bs.scrollspy', function(e) {
+    $(window).on('activate.bs.scrollspy', function (e) {
         history.replaceState({}, '', $("a[href^='#']", e.target).attr('href'));
     });
 });
